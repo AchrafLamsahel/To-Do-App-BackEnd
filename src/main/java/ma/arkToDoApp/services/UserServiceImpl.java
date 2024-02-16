@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class UserServiceImpl {
+public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
     public List<UserResponseDto> getAllUsers() {
@@ -31,7 +31,6 @@ public class UserServiceImpl {
             public Long id = user.getId();
             public String fullName = user.getLastName().toUpperCase() + ", " + user.getFirstName();
             public String email = user.getEmail();
-
             public List<Object> tasks = Collections.singletonList(user.getTasks().stream().map(task -> new Object() {
                 public Long id = task.getId();
                 public String title = task.getTitle();
