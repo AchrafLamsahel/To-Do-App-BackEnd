@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
     }
     public Object getUserById(Long id) throws UserNotFoundException{
         var user = userRepository.findById(id).orElseThrow(
-                () -> new UserNotFoundException(ExceptionsMessage.USER_NOT_FOUND.getMessage());
+                () -> new UserNotFoundException(ExceptionsMessage.USER_NOT_FOUND.getMessage()));
         return new Object() {
             public Long id = user.getId();
             public String fullName = user.getLastName().toUpperCase() + ", " + user.getFirstName();
