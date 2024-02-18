@@ -2,6 +2,9 @@ package ma.arkToDoApp.enumurations;
 
 public enum ExceptionsMessage {
     USER_NOT_FOUND("Utilisateur introuvable"),
+    TASK_NOT_FOUND("Task nout found !"),
+    USER_INPUT_NOT_VALID("User Input Not Valid ! "),
+    TASK_INPUT_NOT_VALID("Task Input Not Valid !"),
     INTERNAL_SERVER_ERROR("Erreur serveur"),
     USER_NOT_AUTHORIZED("Non autorisé"),
     EMAIL_ALREADY_EXIST("Adresse mail déjà utilisée"),

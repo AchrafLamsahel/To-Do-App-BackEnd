@@ -19,7 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskController {
     private final TaskService taskService;
-    // BONUS : Add Swagger documentation (OpenAPI)!
     @GetMapping(value = "/" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getAllTasks() {
         return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
@@ -62,7 +61,7 @@ public class TaskController {
             taskService.deleteTask(id);
             return ResponseEntity.ok().build();
         }catch (TaskNotFoundException e){
-            throw new TaskInputNotValidException("Task not found !");
+            throw new TaskInputNotValidException("Task not found with id = "+ id);
         }
     }
 

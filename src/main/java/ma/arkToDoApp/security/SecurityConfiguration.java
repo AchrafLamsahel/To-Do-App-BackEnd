@@ -3,7 +3,6 @@ package ma.arkToDoApp.security;
 import lombok.RequiredArgsConstructor;
 import ma.arkToDoApp.security.jwt.JwtAuthenticationFilter;
 import ma.arkToDoApp.security.securityService.IUserService;
-import ma.arkToDoApp.services.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

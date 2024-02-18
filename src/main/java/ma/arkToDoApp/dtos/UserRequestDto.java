@@ -2,7 +2,6 @@ package ma.arkToDoApp.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-
 @Getter
 @AllArgsConstructor
 public class UserRequestDto {

@@ -1,16 +1,10 @@
 package ma.arkToDoApp.dtos;
 
-import lombok.*;
-
-import java.util.List;
+import lombok.Data;
+import java.util.Date;
 @Data
-@NoArgsConstructor
-public class ErrorResponse {
+public class ErrorResponse{
+    private Integer statusNumber;
     private String message;
-    private List<String> details;
-
-    public ErrorResponse(String message, List<String> details) {
-        this.message = message;
-        this.details = details;
-    }
+    private Date timestamp;
 }

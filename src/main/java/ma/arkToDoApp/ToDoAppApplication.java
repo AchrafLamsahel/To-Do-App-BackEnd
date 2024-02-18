@@ -1,5 +1,6 @@
 package ma.arkToDoApp;
 
+import ma.arkToDoApp.dtos.TaskRequestDto;
 import ma.arkToDoApp.dtos.UserRequestDto;
 import ma.arkToDoApp.services.TaskService;
 import ma.arkToDoApp.services.UserService;
@@ -8,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @SpringBootApplication
@@ -23,6 +25,9 @@ public class ToDoAppApplication {
 		return args -> {
 			userService.createUser(new UserRequestDto(1L,"Achraf","Lamsahel",
 					"Achraflamsahel1@gmail.com"));
+			taskService.createTask(new TaskRequestDto(
+					1L,"Task1","Description Task 2",1L,"IMPROGRESS",new Date(2027, Calendar.MAY,11)
+			));
 
 		};
 	}
