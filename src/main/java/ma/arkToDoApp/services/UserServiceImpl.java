@@ -3,6 +3,7 @@ package ma.arkToDoApp.services;
 import lombok.AllArgsConstructor;
 import ma.arkToDoApp.dtos.UserRequestDto;
 import ma.arkToDoApp.dtos.UserResponseDto;
+import ma.arkToDoApp.exceptions.UserInputNotValidException;
 import ma.arkToDoApp.mappers.MappingProfile;
 import ma.arkToDoApp.repositories.UserRepository;
 import ma.arkToDoApp.utils.DPCombinator.UserRegistrationValidator;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserService{
         if ( UserRegistrationValidator.isEmailValid()
                 .and(UserRegistrationValidator.firstNameIsValid())
                 .and(UserRegistrationValidator.lastNameIsValid()).apply(userDto) != ValidationResult.SUCCESS )
-            throw new RuntimeException();
+            throw new UserInputNotValidException("User Input Not Valid ! ");
         var user = MappingProfile.mapToUserEntity(userDto);
         return MappingProfile.mapToUserDto(userRepository.save(user));
     }
@@ -53,7 +54,7 @@ public class UserServiceImpl implements UserService{
         if ( UserRegistrationValidator.isEmailValid()
                 .and(UserRegistrationValidator.firstNameIsValid())
                 .and(UserRegistrationValidator.lastNameIsValid()).apply(userDto) != ValidationResult.SUCCESS )
-            throw new RuntimeException();
+            throw new UserInputNotValidException("Input of User not Valid ! ");
         var user = MappingProfile.mapToUserEntity(userDto);
         return MappingProfile.mapToUserDto(userRepository.save(user));
     }

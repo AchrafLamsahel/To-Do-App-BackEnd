@@ -8,18 +8,18 @@ import java.util.function.Function;
 import static ma.arkToDoApp.utils.DPCombinator.ValidationResult.*;
 public interface TaskRegistrationValidator extends Function<TaskRequestDto, ValidationResult> {
 
-    static TaskRegistrationValidator statusIsValid(){
-        return Task ->  !Task.getStatus().isEmpty() ?
+    static TaskRegistrationValidator statusIsEmpty(){
+        return taskRequestDto ->  !(taskRequestDto.getStatus().isEmpty()) ?
                  SUCCESS: STATUS_IS_NULL;
     }
-    static TaskRegistrationValidator titleIsValid(){
-        return user ->  !user.getTitle().isEmpty() ?
+    static TaskRegistrationValidator titleIsEmpty(){
+        return taskRequestDto ->  !(taskRequestDto.getTitle().isEmpty()) ?
                 SUCCESS : TITLE_IS_NULL;
     }
-    static TaskRegistrationValidator dueDateIsValid(){
-        return task -> {
-            if (task.getDueDate() != null) {
-                LocalDate dueDate = task.getDueDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    public static TaskRegistrationValidator dueDateIsValid() {
+        return taskRequestDto -> {
+            if (taskRequestDto.getDueDate() != null) {
+                LocalDate dueDate = taskRequestDto.getDueDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
                 return LocalDate.now().isBefore(dueDate) ? SUCCESS : INVALID_DUE_DATE;
             } else {
                 return INVALID_DUE_DATE;
@@ -28,16 +28,16 @@ public interface TaskRegistrationValidator extends Function<TaskRequestDto, Vali
     }
 
     default TaskRegistrationValidator and(TaskRegistrationValidator other) {
-        return task -> {
-            ValidationResult result = this.apply(task);
-            return result.equals(SUCCESS) ? other.apply(task) : result;
+        return taskRequestDto -> {
+            ValidationResult result = this.apply(taskRequestDto);
+            return result.equals(SUCCESS) ? other.apply(taskRequestDto) : result;
         };
     }
 
     default TaskRegistrationValidator or(TaskRegistrationValidator other) {
-        return task -> {
-            ValidationResult result = this.apply(task);
-            return result.equals(SUCCESS) ? SUCCESS : other.apply(task);
+        return taskRequestDto -> {
+            ValidationResult result = this.apply(taskRequestDto);
+            return result.equals(SUCCESS) ? SUCCESS : other.apply(taskRequestDto);
         };
     }
 

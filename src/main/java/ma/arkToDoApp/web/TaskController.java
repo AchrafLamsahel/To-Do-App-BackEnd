@@ -3,6 +3,8 @@ package ma.arkToDoApp.web;
 import lombok.AllArgsConstructor;
 import ma.arkToDoApp.dtos.TaskRequestDto;
 import ma.arkToDoApp.dtos.TaskResponseDto;
+import ma.arkToDoApp.exceptions.TaskNotFoundException;
+import ma.arkToDoApp.exceptions.UserInputNotValidException;
 import ma.arkToDoApp.services.TaskService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,37 +18,51 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskController {
     private final TaskService taskService;
-    // add ExceptionHandling
-    // create custom exceptions NotFoundException, DataNotValidException, etc.
     // BONUS : Add Swagger documentation (OpenAPI)!
     @GetMapping(value = "/" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getAllTasks() {
-        List<TaskResponseDto> alltasks = taskService.getAllTasks();
-        if( alltasks.isEmpty() ){
-            return new ResponseEntity<>("Taks doesn't exist", HttpStatus.NOT_FOUND);
-        }
         return new ResponseEntity<>(taskService.getAllTasks(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getTaskById(@PathVariable("id") Long id) throws Exception {
-        taskService.getTaskById(id);
-        return new ResponseEntity<>();
+    public ResponseEntity<Object> getTaskById(@PathVariable("id") Long id) throws TaskNotFoundException {
+        try {
+            TaskResponseDto taskResponseDto = taskService.getTaskById(id);
+            return ResponseEntity.ok(taskResponseDto);
+        }catch (TaskNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createTask(@RequestBody TaskRequestDto taskDto) {
-        return new ResponseEntity<>(taskService.createTask(taskDto), HttpStatus.CREATED);
+        try {
+            TaskResponseDto taskResponseDto = taskService.createTask(taskDto);
+            return ResponseEntity.status(HttpStatus.CREATED).body(taskResponseDto);
+        }catch (UserInputNotValidException e){
+                return ResponseEntity.badRequest().build();
+        }
     }
 
-    @PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateById(@RequestBody TaskRequestDto taskDto) {
-        return new ResponseEntity<>(taskService.updateTask(taskDto), HttpStatus.CREATED);
+    @PutMapping(value = "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateById(@PathVariable("id") Long id ,@RequestBody TaskRequestDto taskDto) {
+        try {
+            TaskResponseDto responseDto = taskService.updateTask(id,taskDto);
+            return ResponseEntity.ok(responseDto);
+        }catch (TaskNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @DeleteMapping(value = "/{id}" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteById(@PathVariable("id") Long id) throws Exception {
-        return new ResponseEntity<>(taskService.deleteTask(id));
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) throws TaskNotFoundException {
+        try {
+            taskService.deleteTask(id);
+            return ResponseEntity.noContent().build();
+        }catch (TaskNotFoundException e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
 
