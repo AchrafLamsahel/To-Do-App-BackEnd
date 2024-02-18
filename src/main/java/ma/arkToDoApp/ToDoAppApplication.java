@@ -1,6 +1,5 @@
 package ma.arkToDoApp;
 
-import ma.arkToDoApp.dtos.TaskRequestDto;
 import ma.arkToDoApp.dtos.UserRequestDto;
 import ma.arkToDoApp.services.TaskService;
 import ma.arkToDoApp.services.UserService;
@@ -17,6 +16,8 @@ public class ToDoAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ToDoAppApplication.class, args);
 	}
+
+	// swagger : http://localhost:8080/swagger-ui/index.html
 	@Bean
 	public CommandLineRunner startApplication(UserService userService, TaskService taskService){
 		return args -> {

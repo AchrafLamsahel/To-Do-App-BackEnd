@@ -1,4 +1,4 @@
-package ma.arkToDoApp.utils;
+package ma.arkToDoApp.utils.ManualValidator;
 
 import ma.arkToDoApp.entities.User;
 

@@ -14,7 +14,6 @@ import javax.print.attribute.standard.Media;
 
 @RestController
 @AllArgsConstructor
-//@RequestMapping(value = "/api/v1/users", produces = "application/json", consumes = "application/json")
 @RequestMapping(value = "/api/v1/users" /*, produces = "application/json", consumes = "application/json"*/)
 public class UserController {
     private final UserService userService;

@@ -3,6 +3,7 @@ package ma.arkToDoApp.web;
 import lombok.AllArgsConstructor;
 import ma.arkToDoApp.dtos.TaskRequestDto;
 import ma.arkToDoApp.dtos.TaskResponseDto;
+import ma.arkToDoApp.exceptions.TaskInputNotValidException;
 import ma.arkToDoApp.exceptions.TaskNotFoundException;
 import ma.arkToDoApp.exceptions.UserInputNotValidException;
 import ma.arkToDoApp.services.TaskService;
@@ -30,7 +31,7 @@ public class TaskController {
             TaskResponseDto taskResponseDto = taskService.getTaskById(id);
             return ResponseEntity.ok(taskResponseDto);
         }catch (TaskNotFoundException e){
-            return ResponseEntity.notFound().build();
+            throw new TaskNotFoundException("Task not found !");
         }
     }
 
@@ -61,7 +62,7 @@ public class TaskController {
             taskService.deleteTask(id);
             return ResponseEntity.noContent().build();
         }catch (TaskNotFoundException e){
-            return ResponseEntity.notFound().build();
+            throw new TaskInputNotValidException("Task not found !");
         }
     }
 
