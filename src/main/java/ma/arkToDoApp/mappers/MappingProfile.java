@@ -27,6 +27,7 @@ public class MappingProfile {
     public static UserResponseDto mapToUserDto(User user) {
         return modelMapper.map(user, UserResponseDto.class);
     }
+
     static {
         Converter<User, UserResponseDto> userToUserResponseDtoConverter = new Converter<User, UserResponseDto>() {
             public UserResponseDto convert(MappingContext<User, UserResponseDto> context) {

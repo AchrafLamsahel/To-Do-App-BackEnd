@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.http.HttpStatusCode;
 
 import java.util.Date;
 
@@ -11,7 +12,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TaskResponseDto {
+public class TaskResponseDto  {
     private Long id;
     private String title;
     private String description;

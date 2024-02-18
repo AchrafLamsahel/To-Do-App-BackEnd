@@ -5,6 +5,8 @@ import ma.arkToDoApp.dtos.UserRequestDto;
 import ma.arkToDoApp.dtos.UserResponseDto;
 import ma.arkToDoApp.mappers.MappingProfile;
 import ma.arkToDoApp.repositories.UserRepository;
+import ma.arkToDoApp.utils.DPCombinator.UserRegistrationValidator;
+import ma.arkToDoApp.utils.DPCombinator.ValidationResult;
 import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +23,10 @@ public class UserServiceImpl implements UserService{
     }
 
     public UserResponseDto createUser(UserRequestDto userDto) {
+        if ( UserRegistrationValidator.isEmailValid()
+                .and(UserRegistrationValidator.firstNameIsValid())
+                .and(UserRegistrationValidator.lastNameIsValid()).apply(userDto) != ValidationResult.SUCCESS )
+            throw new RuntimeException();
         var user = MappingProfile.mapToUserEntity(userDto);
         return MappingProfile.mapToUserDto(userRepository.save(user));
     }
@@ -44,6 +50,10 @@ public class UserServiceImpl implements UserService{
     }
 
     public UserResponseDto addUser(UserRequestDto userDto) {
+        if ( UserRegistrationValidator.isEmailValid()
+                .and(UserRegistrationValidator.firstNameIsValid())
+                .and(UserRegistrationValidator.lastNameIsValid()).apply(userDto) != ValidationResult.SUCCESS )
+            throw new RuntimeException();
         var user = MappingProfile.mapToUserEntity(userDto);
         return MappingProfile.mapToUserDto(userRepository.save(user));
     }
