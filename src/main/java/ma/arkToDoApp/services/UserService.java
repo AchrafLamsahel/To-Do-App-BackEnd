@@ -2,9 +2,9 @@ package ma.arkToDoApp.services;
 
 import ma.arkToDoApp.dtos.UserRequestDto;
 import ma.arkToDoApp.dtos.UserResponseDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 public interface UserService {
     List<UserResponseDto> getAllUsers();
     UserResponseDto createUser(UserRequestDto userDto);

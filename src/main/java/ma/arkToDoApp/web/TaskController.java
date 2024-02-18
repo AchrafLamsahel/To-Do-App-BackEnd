@@ -60,7 +60,7 @@ public class TaskController {
     public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) throws TaskNotFoundException {
         try {
             taskService.deleteTask(id);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok().build();
         }catch (TaskNotFoundException e){
             throw new TaskInputNotValidException("Task not found !");
         }

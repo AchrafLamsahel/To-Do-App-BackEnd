@@ -21,10 +21,13 @@ public class UserAndTaskExceptionHandler extends ResponseEntityExceptionHandler 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = {UserInputNotValidException.class, TaskInputNotValidException.class})
     public final ResponseEntity<Object> handeInputNotValid(Exception ex, WebRequest request) {
+        /*
         List<String> details = new ArrayList<>();
         details.add(ex.getLocalizedMessage());
         ErrorResponse error =  new ErrorResponse("Server Error", details);
         return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+         */
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
