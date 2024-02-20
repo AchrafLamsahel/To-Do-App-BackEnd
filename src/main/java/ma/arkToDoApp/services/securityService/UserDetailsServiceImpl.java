@@ -1,6 +1,7 @@
-package ma.arkToDoApp.security.securityService;
+package ma.arkToDoApp.services.securityService;
 
 import lombok.AllArgsConstructor;
+import ma.arkToDoApp.enumurations.ExceptionsMessage;
 import ma.arkToDoApp.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,9 +16,10 @@ public class UserDetailsServiceImpl implements IUserService {
     public UserDetailsService userDetailsService() {
         return new UserDetailsService() {
             @Override
-            public UserDetails loadUserByUsername(String username) {
-                return userRepository.findByEmail(username)
-                        .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            public UserDetails loadUserByUsername(String email) {
+                return userRepository.findByEmail(email)
+                        .orElseThrow(() -> new UsernameNotFoundException(
+                                ExceptionsMessage.USER_NOT_FOUND.getMessage()));
             }
         };
     }

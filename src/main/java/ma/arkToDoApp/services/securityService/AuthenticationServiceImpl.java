@@ -1,13 +1,13 @@
-package ma.arkToDoApp.security.securityService;
+package ma.arkToDoApp.services.securityService;
 
 import lombok.RequiredArgsConstructor;
 import ma.arkToDoApp.entities.User;
 import ma.arkToDoApp.repositories.UserRepository;
-import ma.arkToDoApp.security.dto.JwtAuthenticationResponse;
-import ma.arkToDoApp.security.dto.Role;
-import ma.arkToDoApp.security.dto.SignUpRequest;
-import ma.arkToDoApp.security.dto.SigninRequest;
-import ma.arkToDoApp.security.jwt.JwtService;
+import ma.arkToDoApp.dtos.JwtAuthenticationResponse;
+import ma.arkToDoApp.entities.Role;
+import ma.arkToDoApp.dtos.SignUpRequest;
+import ma.arkToDoApp.dtos.SigninRequest;
+import ma.arkToDoApp.jwt.JwtService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;

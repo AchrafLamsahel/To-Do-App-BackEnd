@@ -12,12 +12,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 @SuppressWarnings({ "unchecked", "rawtypes" })
-@ControllerAdvice /**   Pour Intercepter Les Exceptions  */
+@ControllerAdvice
 public class UserAndTaskExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = {UserInputNotValidException.class, TaskInputNotValidException.class})

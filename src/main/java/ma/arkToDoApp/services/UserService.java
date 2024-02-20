@@ -2,10 +2,12 @@ package ma.arkToDoApp.services;
 
 import ma.arkToDoApp.dtos.UserRequestDto;
 import ma.arkToDoApp.dtos.UserResponseDto;
+import ma.arkToDoApp.exceptions.UserNotFoundException;
+
 import java.util.List;
 public interface UserService {
     List<UserResponseDto> getAllUsers();
     UserResponseDto createUser(UserRequestDto userDto);
     public UserResponseDto addUser(UserRequestDto userDto);
-    UserResponseDto updateUser(Long id, UserRequestDto userDto) throws Exception;
+    UserResponseDto updateUser(Long id, UserRequestDto userDto) throws UserNotFoundException;
 }

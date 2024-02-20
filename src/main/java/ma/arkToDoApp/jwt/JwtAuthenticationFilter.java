@@ -1,4 +1,4 @@
-package ma.arkToDoApp.security.jwt;
+package ma.arkToDoApp.jwt;
 
 import org.apache.commons.lang3.StringUtils;
 import jakarta.servlet.FilterChain;
@@ -6,7 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import ma.arkToDoApp.security.securityService.IUserService;
+import ma.arkToDoApp.services.securityService.IUserService;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;

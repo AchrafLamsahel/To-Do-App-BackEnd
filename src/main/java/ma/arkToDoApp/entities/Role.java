@@ -1,4 +1,4 @@
-package ma.arkToDoApp.security.dto;
+package ma.arkToDoApp.entities;
 
 public enum Role {
     USER,

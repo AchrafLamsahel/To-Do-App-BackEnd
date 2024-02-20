@@ -1,4 +1,4 @@
-package ma.arkToDoApp.security.jwt;
+package ma.arkToDoApp.jwt;
 
 import java.security.Key;
 import java.util.Date;

@@ -26,7 +26,7 @@ public class ToDoAppApplication {
 			userService.createUser(new UserRequestDto(1L,"Achraf","Lamsahel",
 					"Achraflamsahel1@gmail.com"));
 			taskService.createTask(new TaskRequestDto(
-					1L,"Task1","Description Task 2",1L,"IMPROGRESS",new Date(2027, Calendar.MAY,11)
+					1L,"","Description Task 2",1L,"hey",new Date(2027, Calendar.MAY,11)
 			));
 
 		};

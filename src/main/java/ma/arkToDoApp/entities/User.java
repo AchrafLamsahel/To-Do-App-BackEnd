@@ -2,7 +2,6 @@ package ma.arkToDoApp.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import ma.arkToDoApp.security.dto.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

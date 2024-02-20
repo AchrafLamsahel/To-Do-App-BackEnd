@@ -1,4 +1,4 @@
-package ma.arkToDoApp.security.jwt;
+package ma.arkToDoApp.jwt;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

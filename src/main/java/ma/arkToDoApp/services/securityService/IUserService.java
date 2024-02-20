@@ -1,4 +1,4 @@
-package ma.arkToDoApp.security.securityService;
+package ma.arkToDoApp.services.securityService;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 public interface IUserService {

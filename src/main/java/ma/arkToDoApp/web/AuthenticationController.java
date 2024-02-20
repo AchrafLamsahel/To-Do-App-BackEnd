@@ -1,10 +1,10 @@
 package ma.arkToDoApp.web;
 
 import lombok.AllArgsConstructor;
-import ma.arkToDoApp.security.dto.JwtAuthenticationResponse;
-import ma.arkToDoApp.security.dto.SignUpRequest;
-import ma.arkToDoApp.security.dto.SigninRequest;
-import ma.arkToDoApp.security.securityService.AuthenticationService;
+import ma.arkToDoApp.dtos.JwtAuthenticationResponse;
+import ma.arkToDoApp.dtos.SignUpRequest;
+import ma.arkToDoApp.dtos.SigninRequest;
+import ma.arkToDoApp.services.securityService.AuthenticationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

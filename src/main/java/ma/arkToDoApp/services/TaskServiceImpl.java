@@ -28,9 +28,10 @@ public class TaskServiceImpl implements TaskService{
     }
     @Override
     public TaskResponseDto createTask(TaskRequestDto taskDto) {
-        if( TaskRegistrationValidator.statusIsEmpty()
-                .and(titleIsEmpty()).and(dueDateIsValid()).apply(taskDto) != ValidationResult.SUCCESS )
-            throw new TaskInputNotValidException(ExceptionsMessage.TASK_INPUT_NOT_VALID.getMessage());
+        TaskRegistrationValidator validator = TaskRegistrationValidator.statusIsEmpty()
+                .and(titleIsEmpty()).and(dueDateIsValid());
+        if( validator.apply(taskDto) != ValidationResult.SUCCESS )
+            throw new TaskInputNotValidException(validator.apply(taskDto).getMessage());
         var task = MappingProfile.mapToEntity(taskDto);
         return MappingProfile.mapToDto(taskRepository.save(task));
     }
